@@ -11,7 +11,7 @@ pool:
 
 steps:
 # Maven Build
-- task: Maven@3
+- task: Maven@1
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -24,11 +24,9 @@ steps:
 
 # Publish code coverage results
 # Publish Cobertura or JaCoCo code coverage results from a build
-- task: PublishCodeCoverageResults@1
+- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
+
+- task: PublishBuildArtifacts@1
   inputs:
-    #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
-    summaryFileLocation: 
-    #pathToSources: # Optional
-    #reportDirectory: # Optional
-    #additionalCodeCoverageFiles: # Optional
-    #failIfCoverageEmpty: false # Optional
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: build
