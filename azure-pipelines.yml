@@ -18,8 +18,8 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    # publishJUnitResults: true
-    # testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
 # Publish build artifacts
@@ -33,8 +33,8 @@ steps:
 # Publish test results to Azure Pipelines
 - task: PublishTestResults@2
   inputs:
-    #testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-    #testResultsFiles: '**/TEST-*.xml' 
+    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+    testResultsFiles: '**/TEST-*.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     #mergeTestResults: false # Optional
     #failTaskOnFailedTests: false # Optional
