@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: ./buildSomething.sh
+
 - task: CopyFiles@2
   inputs:
     contents: 'TEST-Sample.trx'
